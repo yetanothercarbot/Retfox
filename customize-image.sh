@@ -55,7 +55,6 @@ Main() {
 	esac
 	# Always run
 	ApplyFSOverlay
-	BoardSpecific "$@"
 	CompileDTBO
 } # Main
 
@@ -129,12 +128,5 @@ MTSetMacSrc() {
 	# for meshtasticd (/etc/meshtasticd/config.yaml)
 	sed -i "s/^#\?  MACAddressSource: .*/  MACAddressSource: $iface_name/" /etc/meshtasticd/config.yaml
 } # MTSetMacSrc
-
-BoardSpecific() {
-	# Note: Board specific customizations may also be added via Extensions
-	# See extensions/ directory
-
-	# Unused
-} # BoardSpecific
 
 Main "$@"
