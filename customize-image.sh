@@ -37,7 +37,7 @@ case $RELEASE in
 		;;
 	*)
 		# Exit early for unsupported releases
-		echo "Unsupported mPWRD RELEASE: $RELEASE"
+		echo "Unsupported RELEASE: $RELEASE"
 		exit 1
 		;;
 esac
@@ -45,8 +45,8 @@ esac
 Main() {
 	case $pipx_g in
 		true)
-			InstallPipxPkg "meshtastic"
-			InstallPipxPkg "contact"
+			InstallPipxPkg "rns"
+			InstallPipxPkg "nomadnet"
 			;;
 		*)
 			echo "'pipx install --global' skipped for ${RELEASE} due to old pipx version."
@@ -75,7 +75,7 @@ InstallPipxPkg() {
 CompileDTBO() {
 	# Always compile DTBOs for each family (even if not enabled by default)
 	mkdir -p /boot/overlay-user
-	echo "Compiling mPWRD device tree overlays for ${LINUXFAMILY}"
+	echo "Compiling device tree overlays for ${LINUXFAMILY}"
 	echo "located in overlay/dtbo/${LINUXFAMILY}"
 	shopt -s nullglob
 	# If *.dts returns no results, the loop will not execute (desired behavior)
@@ -133,64 +133,8 @@ MTSetMacSrc() {
 BoardSpecific() {
 	# Note: Board specific customizations may also be added via Extensions
 	# See extensions/ directory
-	case $BOARD in
-		ebyte-ecb41-pge)
-			# Enable ebyte-ecb41-pge-spi0-1cs-spidev overlay
-			EnableKernelDTOverlay "ebyte-ecb41-pge-spi0-1cs-spidev"
-			# Set meshtasticd MacAddressSource to 'end0' for ebyte-ecb41-pge
-			MTSetMacSrc "end0"
-			;;
-		forlinx-ok3506-s12)
-			# Enable forlinx-ok3506-s12-spi0-1cs-spidev overlay
-			EnableKernelDTOverlay "forlinx-ok3506-s12-spi0-1cs-spidev"
-			# Set meshtasticd MacAddressSource to 'end0' for forlinx-ok3506-s12
-			MTSetMacSrc "end0"
-			;;
-		luckfox-lyra-plus)
-			# Enable luckfox-lyra-plus-spi0-1cs_rmio13-spidev overlay
-			EnableKernelDTOverlay "luckfox-lyra-plus-spi0-1cs_rmio13-spidev"
-			# Set meshtasticd MacAddressSource to 'end1' for lyra-plus
-			MTSetMacSrc "end1"
-			# Install waveshare pico config for lyra-plus
-			cp /etc/meshtasticd/available.d/lora-lyra-ws-raspberry-pi-pico-hat.yaml /etc/meshtasticd/config.d/
-			;;
-		luckfox-lyra-ultra-w)
-			# Enable devicetree overlays
-			EnableKernelDTOverlay "luckfox-lyra-ultra-w-spi0-2cs-spidev"
-			EnableUserDTOverlay "luckfox-lyra-ultra-w-uart1"
-			EnableUserDTOverlay "luckfox-lyra-ultra-w-i2c0"
-			# Set meshtasticd MacAddressSource to 'end1' for lyra-ultra-w
-			MTSetMacSrc "end1"
-			# Install 'Luckfox Ultra' 2W hat config for lyra-ultra
-			cp /etc/meshtasticd/available.d/lora-lyra-ultra_2w.yaml /etc/meshtasticd/config.d/
-			;;
-		luckfox-lyra-zero-w)
-			# Enable luckfox-lyra-zero-w-spi0-1cs-spidev overlay
-			EnableKernelDTOverlay "luckfox-lyra-zero-w-spi0-1cs-spidev"
-			;;
-		luckfox-pico-max)
-			# Set meshtasticd MacAddressSource to 'end0' for pico-max
-			MTSetMacSrc "end0"
-			# Install waveshare pico config for pico-max
-			cp /etc/meshtasticd/available.d/lora-luckfox-pico-max-ws-raspberry-pi-pico-hat.yaml /etc/meshtasticd/config.d/
-			;;
-		luckfox-pico-mini)
-			# Set meshtasticd MacAddressSource to 'end0' for pico-mini
-			MTSetMacSrc "end0"
-			# Install femtofox config for pico-mini
-			cp /etc/meshtasticd/available.d/lora-femtofox_SX1262_TCXO.yaml /etc/meshtasticd/config.d/
-			;;
-		# raspberry-pi-64bit
-		rpi4b)
-			# Set meshtasticd MacAddressSource to 'end0' for Raspberry Pi
-			MTSetMacSrc "end0"
-			;;
-		*)
-			echo "No board-specific customizations for board: $BOARD"
-			;;
-	esac
-	# Fix ownership for meshtasticd configs
-	chown -R meshtasticd:meshtasticd /etc/meshtasticd/config.d
+
+	# Unused
 } # BoardSpecific
 
 Main "$@"

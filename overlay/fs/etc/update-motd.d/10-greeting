@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -o pipefail
+
+RED=$'\e[31m'
+GREEN=$'\e[32m'
+YELLOW=$'\e[33m'
+BLUE=$'\e[34m'
+GREY=$'\e[90m'
+BOLD=$'\e[1m'
+RESET=$'\e[0m'
+echo ""
+cat << EOF
+${BOLD}Welcome to Retfox.${RESET} Reticulum should already be installed.
+
+See the getting started page: https://reticulum.network/manual/gettingstartedfast.html
+EOF
