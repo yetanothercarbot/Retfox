@@ -1,0 +1,21 @@
+[interfaces]
+
+  # Brisbane settings.
+  [[Femtofox LoRa]]
+    type = SX126xInterface
+    interface_enabled = True
+    frequency = 920125000
+    bandwidth = 500000
+    spreadingfactor = 9
+    codingrate = 5
+    txpower = 22 # You will need to adjust this for your antenna for legal EIRP purposes
+    platform    = luckfox-pico
+    radio_board = femtofox-integrated-v1
+
+  [[Beleth]]
+    type = TCPClientInterface
+    interface_enabled = True
+    target_host = rns.beleth.net
+    target_port = 4242
+    i2p_tunneled = False
+    kiss_framing = False

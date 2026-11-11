@@ -14,4 +14,6 @@ cat << EOF
 ${BOLD}Welcome to Retfox.${RESET} Reticulum should already be installed.
 
 See the getting started page: https://reticulum.network/manual/gettingstartedfast.html
+
+Remember to configure your radio interface before starting rns!
 EOF

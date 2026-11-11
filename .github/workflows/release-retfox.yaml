@@ -1,4 +1,4 @@
-name: Release mPWRD-OS
+name: Release Retfox
 
 on:
   workflow_dispatch:
@@ -17,9 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Get Version
+      - uses: olegtarasov/get-tag@v2.1.4
         id: version
-        run: echo "mpwrd=$(cat mPWRD-VERSION)" >> $GITHUB_OUTPUT
 
       - name: Download Artifacts
         uses: actions/download-artifact@v8
@@ -36,5 +35,4 @@ jobs:
           files: output/images/*.img.xz
           draft: true
           prerelease: true
-          name: mPWRD-OS ${{ steps.version.outputs.mpwrd }} Alpha
-          tag_name: v${{ steps.version.outputs.mpwrd }}
+          name: Retfox ${{ steps.version.outputs.tag }} Alpha

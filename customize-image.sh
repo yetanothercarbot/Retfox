@@ -54,6 +54,9 @@ Main() {
 			;;
 	esac
 	# Always run
+
+    adduser --disabled-password --comment "reticulum" reticulum
+
 	ApplyFSOverlay
 	CompileDTBO
 } # Main
@@ -120,13 +123,5 @@ EnableKernelDTOverlay() {
 		echo "Warning: /boot/armbianEnv.txt not found, cannot enable device tree overlays"
 	fi
 } # EnableKernelDTOverlay
-
-
-MTSetMacSrc() {
-	iface_name="$1"
-	# Set the General.MACAddressSource to $iface_name
-	# for meshtasticd (/etc/meshtasticd/config.yaml)
-	sed -i "s/^#\?  MACAddressSource: .*/  MACAddressSource: $iface_name/" /etc/meshtasticd/config.yaml
-} # MTSetMacSrc
 
 Main "$@"
