@@ -41,6 +41,7 @@
     txpower = 22 # You will need to adjust this for your antenna for legal EIRP purposes
     platform    = luckfox-pico
     radio_board = femtofox-integrated-v1
+    mode = internal
 
   [[Beleth]]
     type = TCPClientInterface
@@ -49,3 +50,4 @@
     target_port = 4242
     i2p_tunneled = False
     kiss_framing = False
+    mode = boundary
