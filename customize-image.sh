@@ -43,19 +43,16 @@ case $RELEASE in
 esac
 
 Main() {
-	case $pipx_g in
-		true)
-			InstallPipxPkg "rns"
-			InstallPipxPkg "nomadnet"
-			;;
-		*)
-			echo "'pipx install --global' skipped for ${RELEASE} due to old pipx version."
-			echo "Target Debian 13+ or Ubuntu 26.04+ for pipx global support."
-			;;
-	esac
-	# Always run
-
-    adduser --disabled-password --comment "reticulum" reticulum
+	# case $pipx_g in
+	# 	true)
+	# 		InstallPipxPkg "rns"
+	# 		InstallPipxPkg "nomadnet"
+	# 		;;
+	# 	*)
+	# 		echo "'pipx install --global' skipped for ${RELEASE} due to old pipx version."
+	# 		echo "Target Debian 13+ or Ubuntu 26.04+ for pipx global support."
+	# 		;;
+	# esac
 
 	ApplyFSOverlay
 	CompileDTBO
